@@ -8,9 +8,11 @@ $.fn.hexxed = function() {
     this.append('<section id="redsection"><div id="red"></div> <input type="text" id="redt" value="0">');
     this.append('<section id="greensection"><div id="green"></div> <input type="text" id="greent" value="0">');
     this.append('<section id="bluesection"><div id="blue"></div> <input type="text" id="bluet" value="0"> ');
-    this.append('<section class="score"><p id="color">Your score for this guess is:  </p><p id="score">Your total score:              </p>');
+    this.append('<section id="diffturns"> Difficulty: <input type="number" id="diff" value="5" min="0" max="10"> Turns:<input type="number" id="turns" value="10" min="1">');
+    this.append('<section class="score"><p id="color">Your score for this guess is:  </p><p id="score">Your total score: </p>');
     this.append('<section class="submit"><input type="button" id="getScore" value="Check It!"><button>Check It!</button>');
   // Function to get the user's r,g,b values and display the swatch
+    colorCompare();
   $( "button" ).button().click(function() {
     // Get the r,g,b values
     var red   = 255;//$( "SLIDER SELECTER GOES HERE" ).slider( "value" );
@@ -99,10 +101,12 @@ $.fn.hexxed = function() {
         return (Math.abs(expected - actual) / 255) * 100;
     }
    
-    $.fn.colorCompare = function(diff, turns) {
+    function colorCompare() {
         var start = new Date();
         var score = 0, i = 0;
         $("#getScore").click(function(){
+          var diff = $("#diff").val();
+          var turns = $("#turns").val();
           if(i < turns){                        //loop to keep track of # of turns
             var rgb_expected = [125,100,230];//generateStartVal;
             var red = $( "#red" ).slider( "value" ),
@@ -121,10 +125,8 @@ $.fn.hexxed = function() {
             $("#score").html("Your total score:              " + score.toFixed(2));
             start = new Date();
           }
-          i++;
-        });
- $("#getScore").colorCompare(4, 5); // 4 is the difficulty and 5 is the amount of turns
-
+          i++;  
+      });
   }
  
 };
