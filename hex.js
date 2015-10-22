@@ -97,6 +97,14 @@ $.fn.hexed = function() { //The beginning here does all of the HTML that we need
       // randomize rgb values and use hexFromRGB
       // update game user-swatch value
       // return rgb values
+        
+        
+        var a = Math.floor((Math.random() * 255) + 1;
+        var b = Math.floor((Math.random() * 255) + 1;
+        var c = Math.floor((Math.random() * 255) + 1;
+                       
+        var myRGB = [a,b,c];
+        return [a,b,]
     }
 
     // gets the percent error
