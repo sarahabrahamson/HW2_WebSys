@@ -99,12 +99,12 @@ $.fn.hexed = function() { //The beginning here does all of the HTML that we need
       // return rgb values
         
         
-        var a = Math.floor((Math.random() * 255) + 1;
-        var b = Math.floor((Math.random() * 255) + 1;
-        var c = Math.floor((Math.random() * 255) + 1;
+        var a = Math.floor((Math.random() * 255) + 1);
+        var b = Math.floor((Math.random() * 255) + 1);
+        var c = Math.floor((Math.random() * 255) + 1);
                        
         var myRGB = [a,b,c];
-        return [a,b,c];
+        return myRGB;
     }
 
     // gets the percent error
@@ -122,7 +122,7 @@ $.fn.hexed = function() { //The beginning here does all of the HTML that we need
           var turns = $("#turns").val();
 
           if(i < turns){                        //loop to keep track of # of turns
-            var rgb_expected = [125,100,230];//generateStartVal;
+            var rgb_expected = generateStartVal();
             var red = $( "#red" ).slider( "value" ),
               green = $( "#green" ).slider( "value" ),
               blue = $( "#blue" ).slider( "value" ),
