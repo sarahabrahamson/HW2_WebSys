@@ -1,4 +1,19 @@
- (function( $ ) {
+ $( document ).ready(function() {
+    addhtml();
+    $("#getScore").colorCompare(4, 5); // 4 is the difficulty and 5 is the amount of turns
+});
+
+ function addhtml(){
+    $(".plugin").append('<section class="swatches"><div id="game-swatch" class="ui-widget-content ui-corner-all"></div><div id="user-swatch" class="ui-widget-content ui-corner-all"></div> ');
+    $(".plugin").append('<section id="redsection"><div id="red"></div> <input type="text" id="redt" value="0">');
+    $(".plugin").append('<section id="greensection"><div id="green"></div> <input type="text" id="greent" value="0">');
+    $(".plugin").append('<section id="bluesection"><div id="blue"></div> <input type="text" id="bluet" value="0"> ');
+    $(".plugin").append('<section class="score"><p id="color">Your score for this guess is:  </p><p id="score">Your total score:              </p>');
+    $(".plugin").append('<section class="submit"><input type="button" id="getScore" value="Check It!"><button>Check It!</button>');
+    start(jQuery);
+ }
+
+ function start( $ ) {
 
  	// Function to get the user's r,g,b values and display the swatch
 	$( "button" ).button().click(function() {
@@ -116,6 +131,4 @@
 
   }
  
-}( jQuery ));
-
- $("#getScore").colorCompare(4, 5); // 4 is the difficulty and 5 is the amount of turns
+}
