@@ -104,7 +104,7 @@ $.fn.hexed = function() { //The beginning here does all of the HTML that we need
         var c = Math.floor((Math.random() * 255) + 1;
                        
         var myRGB = [a,b,c];
-        return [a,b,]
+        return [a,b,c];
     }
 
     // gets the percent error
