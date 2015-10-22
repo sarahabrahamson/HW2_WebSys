@@ -24,6 +24,9 @@
 	float: left;
 	clear: left;
 }
+#diffturns input{
+	width: 50px;
+}
 #redt{
 	float:left;
 	margin-top:1%;

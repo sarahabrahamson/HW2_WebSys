@@ -14,6 +14,8 @@ $.fn.hexed = function() { //The beginning here does all of the HTML that we need
     this.append('<section class="submit"><input type="button" id="getScore" value="Check It!"><button>Check It!</button>');
   // Function to get the user's r,g,b values and display the swatch
     colorCompare(); // begins the colorcompare function - starts the timer
+    $(".score").hide();
+    $("#user-swatch").hide();
   $( "button" ).button().click(function() {
     // Get the r,g,b values
     var red   = 255;//$( "SLIDER SELECTER GOES HERE" ).slider( "value" );
@@ -106,8 +108,11 @@ $.fn.hexed = function() { //The beginning here does all of the HTML that we need
         var start = new Date();
         var score = 0, i = 0;
         $("#getScore").click(function(){
+          $("#user-swatch").show();
+          $(".score").show();
           var diff = $("#diff").val();
           var turns = $("#turns").val();
+
           if(i < turns){                        //loop to keep track of # of turns
             var rgb_expected = [125,100,230];//generateStartVal;
             var red = $( "#red" ).slider( "value" ),
