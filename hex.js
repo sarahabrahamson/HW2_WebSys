@@ -1,9 +1,10 @@
 $( document ).ready(function() {
-  $(".plugin").hexxed();
+  $(".plugin").hexed();
 });
 
 
-$.fn.hexxed = function() {
+$.fn.hexed = function() { //The beginning here does all of the HTML that we need...
+    $("head").append('<link rel="stylesheet" type="text/css" href="hexed-style.css">');
     this.append('<section class="swatches"><div id="game-swatch" class="ui-widget-content ui-corner-all"></div><div id="user-swatch" class="ui-widget-content ui-corner-all"></div> ');
     this.append('<section id="redsection"><div id="red"></div> <input type="text" id="redt" value="0">');
     this.append('<section id="greensection"><div id="green"></div> <input type="text" id="greent" value="0">');
@@ -12,7 +13,7 @@ $.fn.hexxed = function() {
     this.append('<section class="score"><p id="color">Your score for this guess is:  </p><p id="score">Your total score: </p>');
     this.append('<section class="submit"><input type="button" id="getScore" value="Check It!"><button>Check It!</button>');
   // Function to get the user's r,g,b values and display the swatch
-    colorCompare();
+    colorCompare(); // begins the colorcompare function - starts the timer
   $( "button" ).button().click(function() {
     // Get the r,g,b values
     var red   = 255;//$( "SLIDER SELECTER GOES HERE" ).slider( "value" );
