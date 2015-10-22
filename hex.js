@@ -1,39 +1,34 @@
- $( document ).ready(function() {
-    addhtml();
-    $("#getScore").colorCompare(4, 5); // 4 is the difficulty and 5 is the amount of turns
+$( document ).ready(function() {
+  $(".plugin").hexxed();
 });
 
- function addhtml(){
-    $(".plugin").append('<section class="swatches"><div id="game-swatch" class="ui-widget-content ui-corner-all"></div><div id="user-swatch" class="ui-widget-content ui-corner-all"></div> ');
-    $(".plugin").append('<section id="redsection"><div id="red"></div> <input type="text" id="redt" value="0">');
-    $(".plugin").append('<section id="greensection"><div id="green"></div> <input type="text" id="greent" value="0">');
-    $(".plugin").append('<section id="bluesection"><div id="blue"></div> <input type="text" id="bluet" value="0"> ');
-    $(".plugin").append('<section class="score"><p id="color">Your score for this guess is:  </p><p id="score">Your total score:              </p>');
-    $(".plugin").append('<section class="submit"><input type="button" id="getScore" value="Check It!"><button>Check It!</button>');
-    start(jQuery);
- }
 
- function start( $ ) {
-
- 	// Function to get the user's r,g,b values and display the swatch
-	$( "button" ).button().click(function() {
-		// Get the r,g,b values
-        var red   = 255;//$( "SLIDER SELECTER GOES HERE" ).slider( "value" );
-		var green = 140;//$( "SLIDER SELECTER GOES HERE" ).slider( "value" );
-		var blue  = 60;//$( "SLIDER SELECTER GOES HERE" ).slider( "value" );
-		// Convert rgb to hex
-		var hex_values = [red.toString(16), green.toString(16), blue.toString(16)];
-		// Insert a 0 if the hex value is only one digit
-		for (i = 0; i < hex_values.length; i++)
-		{
-			if (hex_values[i].length === 1)
-				hex_values[i] = "0" + hex_values[i];
-		}
-		// Convert the array of hex values to one string that the CSS can use
-		var hex = "#" + hex_values.join("").toUpperCase();
-		// Set the color using CSS
-		$( "#user-swatch" ).css( "background-color", hex );
-	});
+$.fn.hexxed = function() {
+    this.append('<section class="swatches"><div id="game-swatch" class="ui-widget-content ui-corner-all"></div><div id="user-swatch" class="ui-widget-content ui-corner-all"></div> ');
+    this.append('<section id="redsection"><div id="red"></div> <input type="text" id="redt" value="0">');
+    this.append('<section id="greensection"><div id="green"></div> <input type="text" id="greent" value="0">');
+    this.append('<section id="bluesection"><div id="blue"></div> <input type="text" id="bluet" value="0"> ');
+    this.append('<section class="score"><p id="color">Your score for this guess is:  </p><p id="score">Your total score:              </p>');
+    this.append('<section class="submit"><input type="button" id="getScore" value="Check It!"><button>Check It!</button>');
+  // Function to get the user's r,g,b values and display the swatch
+  $( "button" ).button().click(function() {
+    // Get the r,g,b values
+    var red   = 255;//$( "SLIDER SELECTER GOES HERE" ).slider( "value" );
+    var green = 140;//$( "SLIDER SELECTER GOES HERE" ).slider( "value" );
+    var blue  = 60;//$( "SLIDER SELECTER GOES HERE" ).slider( "value" );
+    // Convert rgb to hex
+    var hex_values = [red.toString(16), green.toString(16), blue.toString(16)];
+    // Insert a 0 if the hex value is only one digit
+    for (i = 0; i < hex_values.length; i++)
+    {
+      if (hex_values[i].length === 1)
+        hex_values[i] = "0" + hex_values[i];
+    }
+    // Convert the array of hex values to one string that the CSS can use
+    var hex = "#" + hex_values.join("").toUpperCase();
+    // Set the color using CSS
+    $( "#user-swatch" ).css( "background-color", hex );
+  });
 
     // Function from the jQueryUI colorpicker
     function hexFromRGB(r, g, b) {
@@ -128,7 +123,8 @@
           }
           i++;
         });
+ $("#getScore").colorCompare(4, 5); // 4 is the difficulty and 5 is the amount of turns
 
   }
  
-}
+};
