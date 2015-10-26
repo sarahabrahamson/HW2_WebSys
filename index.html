@@ -7,9 +7,18 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 </head>
 <body>
-	<div class="plugin"></div> 	
+    <div id="myHeader"> 
+        <h1>Hexed! - A jQuery Game</h1>
+        <button>Show Instructions</button>
+        <p class="instructions">Your goal is to guess the color on the left.</p>
+        <p class="instructions">Use the sliders below to represent your guess.</p> 
+        <p class="instructions">When you think you have your answer, click the 'Check It!' button.</p>
+        <p class="instructions">You have a limited number of turns to find the answer. Good Luck!</p>
+        
+    </div>
+    <div class="plugin"></div> 	
+    <p id="answers"></p>
     
-<!--    <p id="answers"></p>-->
 </body>
 <script src="hex.js"></script>
 </html>
