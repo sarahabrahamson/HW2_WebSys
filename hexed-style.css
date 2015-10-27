@@ -82,7 +82,6 @@
     margin-left: auto;
     margin-right: auto;
     width: 500px;
-    border: inset gray;
     height: 450px;
 }
 
@@ -97,7 +96,6 @@
 #answers {
     padding: 10px;
     font-size: 15px;
-    border: inset gray;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
