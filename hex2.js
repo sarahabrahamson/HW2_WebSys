@@ -8,6 +8,8 @@ $( document ).ready(function() {
     });
 });
 
+
+
 $.fn.hexed = function() {
 //--------------------------------------------------------------------------
 // Helper Functions    
@@ -48,7 +50,6 @@ $.fn.hexed = function() {
     function getError(expected, actual) {
         return (Math.abs(expected - actual) / 255) * 100;
     }
-      
 //--------------------------------------------------------------------------
 // Setting the game up    
 //--------------------------------------------------------------------------
@@ -67,15 +68,17 @@ $.fn.hexed = function() {
     hex = hexFromRGB(user_r,user_g,user_b);
     $( "#user-swatch" ).css( "background-color",'#' + hex );
     
-    
-    
     var score = 0;
     var start;
     var i = 0;
+    var turnsleft = 10;
+   
+    
+    $("#color").html("Your score for this guess is:  " + score.toFixed(2));
+    $("#score").html("Your total score:              " + score.toFixed(2));
     
     // Set the html
-    $("head").append('<link rel="stylesheet" type="text/css" href="hexed-style.css">'); // Adding in the style for the plugin
-    this.append('<div id="myHeader"><h1>Hexed! - A jQuery Game</h1><button>Show Instructions</button><p class="instructions">Your goal is to guess the color on the left.</p><p class="instructions">Use the sliders below to represent your guess.</p><p class="instructions">When you think you have your answer, click the "Check It!" button.</p><p class="instructions">You have a limited number of turns to find the answer. Good Luck!</p>');
+    $("head").append('<link rel="stylesheet" type="text/css" href="hexed-style.css">');
     this.append('<section class="swatches"><div id="game-swatch" class="ui-widget-content ui-corner-all"></div><div id="user-swatch" class="ui-widget-content ui-corner-all"></div> ');
     this.append('<section id="redsection"><div id="red"></div> <input type="text" id="redt" value="0">');
     this.append('<section id="greensection"><div id="green"></div> <input type="text" id="greent" value="0">');
@@ -83,22 +86,6 @@ $.fn.hexed = function() {
     this.append('<section id="diffturns"> Difficulty: <input type="number" id="diff" value="5" min="0" max="10"> Turns:<input type="number" id="turns" value="10" min="1">');
     this.append('<section class="score"><p id="color">Your score for this guess is:  </p><p id="score">Your total score: </p><p id="percent">Your percentage off: </p> <p id="turnsleft"></p>');
     this.append('<section class="submit"><input type="button" id="checkit" value="Check It!">');
-    this.append('<p id="answers">');
-    
-    
-    
-    
-    function refreshTurns(){
-        var turns = $("#turns").val();
-        turnsleft = turns - i;
-        $("#turnsleft").html("Number of turn left is:    " + turns);
-    }
-    //Refreshes the turns if the element is changed.
-   document.getElementById("turns").addEventListener("click",refreshTurns);
-    
-    
-    
-    
 //--------------------------------------------------------------------------
 // Setting up the listener for the swatch 
 //--------------------------------------------------------------------------
@@ -107,7 +94,7 @@ $.fn.hexed = function() {
         user_r = $( "#red" ).slider( "value" );
         user_g = $( "#green" ).slider( "value" );
         user_b = $( "#blue" ).slider( "value" );
-        hex = hexFromRGB( user_r, user_g, user_b); // Creates the HEX for the color value
+        hex = hexFromRGB( user_r, user_g, user_b);
         
         // modified to change the slider when textbox is changed
         $("#redt").change(function() {
@@ -124,22 +111,22 @@ $.fn.hexed = function() {
 
         $( "#user-swatch" ).css( "background-color", "#" + hex );
     }
-    //Starting the actual game itself now that the HTML is all set
-    function startGame(){
-        $("#diff").show();
-        $("#diffturns").show();
-        
+    
+
+//--------------------------------------------------------------------------
+// Reinitialize Values  
+//--------------------------------------------------------------------------
+    function colorCompare() {
         diff = $("#diff").val();
         turns = $("#turns").val();
-        //Generate the game color randomly.
+
         myRGB = generateStartVal();
         actual_r = myRGB[0];
         actual_g = myRGB[1];
         actual_b = myRGB[2];
-        hex = hexFromRGB(actual_r,actual_g,actual_b); // Creates the HEX for the games RGB Values
-        //Setup the Answers HTML
-        document.getElementById("answers").innerHTML = (hex); 
-        $("#answers").hide();
+        hex = hexFromRGB(actual_r,actual_g,actual_b);
+        
+//        document.getElementById("answers").innerHTML = (hex);
         $( "#game-swatch" ).css( "background-color",'#' + hex );
 
         diff = $("#diff").val();
@@ -151,7 +138,7 @@ $.fn.hexed = function() {
         
         turnsleft = turns - i;
         
-        //Defining some boxes to put in and information to put into the boxes
+        
         $("#color").html("Your score for this guess is:  " + score.toFixed(2)); 
         $("#score").html("Your total score:              " + score.toFixed(2));
         $("#percent").html("Your percentage off:         " + score.toFixed(2));
@@ -167,7 +154,7 @@ $.fn.hexed = function() {
                 slide: refreshSwatch,
                 change: refreshSwatch
             });
-            //Creating the sliders for the game
+
             $( "#red" ).slider( "value", user_r );
             $( "#green" ).slider( "value", user_g );
             $( "#blue" ).slider( "value", user_b );
@@ -177,23 +164,17 @@ $.fn.hexed = function() {
             $( "#user-swatch" ).css( "background-color", "#" + hex );
         });
     }
-     
-    startGame(); // begins the colorcompare function - starts the timer
+    
+    
+    colorCompare(); // begins the colorcompare function - starts the timer
+    
     $(document.getElementById("checkit")).click(function() {
-        if(turnsleft==0){//If after all the turns and you clicked and still do not have the correct answer then you lost.
-            $("#answers").show();
-            alert("You did not get it :/");
-            startGame();
-            return;
-        }
-
         var a = hexFromRGB(actual_r,actual_g,actual_b);
         var b = hexFromRGB(user_r,user_g,user_b);
         
-        //if the value being guessed match the color randomly selected
-        if(a===b){
-            alert("You got it :)");
-            
+        
+        if(a===b){ 
+            turnsleft--;
             var perOff = (getError(user_r, actual_r) + getError(user_g, actual_g) + getError(user_b, actual_b)) / 3;
             var time = new Date() - start;
             var total = Math.abs(((15 - diff - perOff) / (15 - diff)) * (15000 - time));
@@ -203,48 +184,73 @@ $.fn.hexed = function() {
             score += total;
             $("#score").html("Your total score:              " + score.toFixed(2));
             $("#percent").html("Your percentage off:         " + perOff.toFixed(2));
+            $("#turnsleft").html("Number of turn left is:    " + turnsleft);
             
+            start = new Date();
             
-            startGame();
-            return;
+            alert("you got it!");
+            colorCompare();
+            
+            user_r = 255;
+            user_g = 255;
+            user_b = 255;
+            
+            $( "#red" ).slider( "value", 255 );
+            $( "#green" ).slider( "value", 255 );
+            $( "#blue" ).slider( "value", 255 );
+
+            hex = hexFromRGB(user_r,user_g,user_b);
+            $( "#user-swatch" ).css( "background-color", "#" + hex );
+            
+            $("#diff").show();
+            $("#diffturns").show();
         }
-        //if the guess is wrong
         else {
+            turnsleft--;
             //keep track of scores
-            if(i == 0){
-                var perOff = (getError(user_r, actual_r) + getError(user_g, actual_g) + getError(user_b, actual_b)) / 3; // calculates the actual percent off
-                var time = new Date() - start;//gets the current time
-                var total = Math.abs(((15 - diff - perOff) / (15 - diff)) * (15000 - time));//does the calculation provided to us for the scoring
-
-                if (total < 0) { total = 0;} // Printing out the scores to the html
-                $("#color").html("Your score for this guess is:  " + total.toFixed(2)); 
-                score += total;
-                $("#score").html("Your total score:              " + score.toFixed(2));
-                $("#percent").html("Your percentage off:         " + perOff.toFixed(2));
-
-                start = new Date();
-            }
-            else {   
+            if(i < turns){
                 var perOff = (getError(user_r, actual_r) + getError(user_g, actual_g) + getError(user_b, actual_b)) / 3;
                 var time = new Date() - start;
                 var total = Math.abs(((15 - diff - perOff) / (15 - diff)) * (15000 - time));
-                
+
                 if (total < 0) { total = 0;}
                 $("#color").html("Your score for this guess is:  " + total.toFixed(2)); 
                 score += total;
                 $("#score").html("Your total score:              " + score.toFixed(2));
                 $("#percent").html("Your percentage off:         " + perOff.toFixed(2));
+                $("#turnsleft").html("Number of turn left is:    " + turnsleft);
+                
 
+                start = new Date();
+            }
+            else {
+                alert("you did not get it :/");
+                $("#turnsleft").html("Number of turn left is:    " + turnsleft);
+                
+                
+                
+                colorCompare();
+
+                user_r = 255;
+                user_g = 255;
+                user_b = 255;
+
+                $( "#red" ).slider( "value", 255 );
+                $( "#green" ).slider( "value", 255 );
+                $( "#blue" ).slider( "value", 255 );
+
+                hex = hexFromRGB(user_r,user_g,user_b);
+                $( "#user-swatch" ).css( "background-color", "#" + hex );
+                
+                $("#diff").show();
+                $("#diffturns").show();
             }
             i++;
-            turnsleft--;
-            $("#turnsleft").html("Number of turn left is:    " + turnsleft);
+            
             
             $("#diff").hide();
             $("#diffturns").hide();
         }
-
-        
     });
     
 };

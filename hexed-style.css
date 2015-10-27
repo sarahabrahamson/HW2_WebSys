@@ -4,6 +4,7 @@
     width: 300px;
     margin: 15px;
 }
+
 .swatches div{
 	width: 120px;
     height: 100px;
@@ -11,49 +12,92 @@
     margin-left:15px;
     float:left;
     background-image: none;
+    border: gray inset;
 }
+
 .score{
 	float:left;
 	clear:left;
 }
+
 .submit{
 	float:left;
 	clear:left;
 }
+
 #diffturns{
 	float: left;
 	clear: left;
 }
+
 #diffturns input{
 	width: 50px;
 }
+
 #redt{
 	float:left;
 	margin-top:1%;
 }
+
 #bluet{
 	float:left;
 	margin-top:1%;
 }
+
 #greent{
 	float:left;
 	margin-top:1%;
 }	
+
 #red .ui-slider-range {
 	background: #ef2929; 
 }
+
 #red .ui-slider-handle {
 	border-color: #ef2929; 
 }
+
 #green .ui-slider-range { 
 	background: #8ae234;
- }
+}
+
 #green .ui-slider-handle { 
 	border-color: #8ae234;
- }
+}
+
 #blue .ui-slider-range { 
 	background: #729fcf;
- }
+}
+
 #blue .ui-slider-handle { 
 	border-color: #729fcf;
- }
+}
+
+.plugin p {
+    margin-left: 20px;
+}
+
+.plugin {
+    padding: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    height: 450px;
+}
+
+#myHeader {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#answers {
+    padding: 10px;
+    font-size: 15px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+}
