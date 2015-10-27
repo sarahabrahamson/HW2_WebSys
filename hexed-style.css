@@ -5,10 +5,14 @@
     margin: 15px;
 }
 
-.swatches div{
+.swatches #swatch-div {
+	margin-left: 100px;
+	margin-top: 18px;
+}
+
+.swatches  #game-swatch, .swatches #user-swatch{
 	width: 120px;
-    height: 100px;
-    margin-top: 18px;
+    height: 100px;    
     margin-left:15px;
     float:left;
     background-image: none;
@@ -18,36 +22,39 @@
 .score{
 	float:left;
 	clear:left;
+	margin-left: 135px;
+}
+
+.score p {	
+	text-align: center;
 }
 
 .submit{
 	float:left;
 	clear:left;
+	margin-left: 215px;
 }
 
 #diffturns{
 	float: left;
 	clear: left;
+	margin-top: 20px;
+	margin-left: 135px;
 }
 
 #diffturns input{
 	width: 50px;
 }
 
-#redt{
-	float:left;
-	margin-top:1%;
+#redsection, #greensection, #bluesection {
+	margin-left: 83px;
 }
 
-#bluet{
+#redt, #bluet, #greent{
 	float:left;
 	margin-top:1%;
+	margin-left: 80px;
 }
-
-#greent{
-	float:left;
-	margin-top:1%;
-}	
 
 #red .ui-slider-range {
 	background: #ef2929; 
@@ -71,10 +78,6 @@
 
 #blue .ui-slider-handle { 
 	border-color: #729fcf;
-}
-
-.plugin p {
-    margin-left: 20px;
 }
 
 .plugin {

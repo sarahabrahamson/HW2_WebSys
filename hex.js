@@ -76,7 +76,7 @@ $.fn.hexed = function() {
     // Set the html
     $("head").append('<link rel="stylesheet" type="text/css" href="hexed-style.css">'); // Adding in the style for the plugin
     this.append('<div id="myHeader"><h1>Hexed! - A jQuery Game</h1><button>Show Instructions</button><p class="instructions">Your goal is to guess the color on the left.</p><p class="instructions">Use the sliders below to represent your guess.</p><p class="instructions">When you think you have your answer, click the "Check It!" button.</p><p class="instructions">You have a limited number of turns to find the answer. Good Luck!</p>');
-    this.append('<section class="swatches"><div id="game-swatch" class="ui-widget-content ui-corner-all"></div><div id="user-swatch" class="ui-widget-content ui-corner-all"></div> ');
+    this.append('<section class="swatches"><div id="swatch-div"><div id="game-swatch" class="ui-widget-content ui-corner-all"></div><div id="user-swatch" class="ui-widget-content ui-corner-all"></div></div> ');
     this.append('<section id="redsection"><div id="red"></div> <input type="text" id="redt" value="0">');
     this.append('<section id="greensection"><div id="green"></div> <input type="text" id="greent" value="0">');
     this.append('<section id="bluesection"><div id="blue"></div> <input type="text" id="bluet" value="0"> ');
